@@ -1,0 +1,47 @@
+CREATE TABLE tbl_employee (
+    emp_code VARCHAR(255) PRIMARY KEY,
+    emp_name VARCHAR(255),
+    emp_status VARCHAR(255)
+);
+
+INSERT INTO tbl_employee (emp_code, emp_name, emp_status) 
+VALUES
+  ('Emp001','Abdi','R'),
+  ('Emp002','Budi','P'),
+  ('Emp003','Cahya','P'),
+  ('Emp004','Danu','P');
+
+SELECT * FROM tbl_employee
+
+CREATE TABLE tbl_income (
+  emp_code VARCHAR(255),
+  emp_income INT
+  );
+
+INSERT INTO tbl_income (emp_code, emp_income) 
+VALUES
+  ('Emp001','10000000'),
+  ('Emp002','9000000'),
+  ('Emp003','15000000'), 
+  ('Emp004','12000000');
+
+SELECT * FROM tbl_income
+
+1A) Buat query jika mencari employee name dan status employee? 
+
+SELECT emp_name AS nama_employee, emp_status AS status_employee FROM tbl_employee;
+
+1B) Buat query untuk menampilkan nama employee yang statusnya resign berserta gaji yang diperoleh?
+
+SELECT tbl_employee.emp_name AS nama_employee, tbl_income.emp_income AS gaji_employee
+FROM tbl_employee
+INNER JOIN tbl_income ON tbl_employee.emp_code=tbl_income.emp_code
+WHERE emp_status = 'R';
+
+1C) Buat query untuk menampilkan emp_code, nama, status, income dan sorting berdasarkan income 
+paling besar?
+
+SELECT tbl_employee.emp_code, emp_name AS nama_employee, emp_status AS status_employee, emp_income as income_employee
+FROM tbl_employee
+INNER JOIN tbl_income ON tbl_employee.emp_code=tbl_income.emp_code
+ORDER BY emp_income DESC;
